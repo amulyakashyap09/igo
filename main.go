@@ -1,15 +1,15 @@
-package igo
+package main
 
-import "fmt"
+import (
+	"github.com/amulyakashyap09/igo/chapter1"
+	"github.com/amulyakashyap09/igo/chapter2"
+	"github.com/amulyakashyap09/igo/chapter3"
+	"github.com/amulyakashyap09/igo/chapter4"
+)
 
 func main() {
-	fmt.Println("Hello, Go :)")
-
-	var name = "Amulya"
-	age := 34
-
-	fmt.Printf("Name: %s, Age: %d", name, age)
-
-	const pi = 3.149
-	fmt.Println("Pi : ", pi)
+	chapter1.Run()
+	chapter2.Run()
+	chapter3.Run()
+	chapter4.Run()
 }
