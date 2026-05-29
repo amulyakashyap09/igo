@@ -1,6 +1,9 @@
 package chapter1
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func Run() {
 	fmt.Println("Hello, Go :)")
@@ -9,6 +12,5 @@ func Run() {
 	age := 34
 	fmt.Printf("Name: %s, Age: %d\n", name, age)
 
-	const pi = 3.149
-	fmt.Println("Pi : ", pi)
+	fmt.Println("Pi : ", math.Pi)
 }
