@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/amulyakashyap09/igo/gotask/internal/model"
 	"github.com/amulyakashyap09/igo/gotask/internal/repository"
@@ -37,4 +38,28 @@ func (s *TaskService) GetTask(id int) (*model.Task, error) {
 
 func (s *TaskService) GetTasks() ([]*model.Task, error) {
 	return s.repo.GetAll()
+}
+
+func (s *TaskService) ProcessTask(id int) error {
+	task, err := s.repo.GetByID(id)
+
+	if err != nil {
+		return fmt.Errorf("get task: %w", err)
+	}
+
+	if err := task.Start(); err != nil {
+		return fmt.Errorf("start task: %w", err)
+	}
+
+	fmt.Printf("processing task %d: %s\n", task.ID, task.Name)
+
+	time.Sleep(2 * time.Second)
+
+	task.Complete()
+
+	if err := s.repo.Save(task); err != nil {
+		return fmt.Errorf("save completed task: %w", err)
+	}
+
+	return nil
 }
